@@ -184,12 +184,12 @@ public class LibraryManager {
        }
     }
 
-    public boolean isBookAlreadyIssued(String mobileNo, UserManager userManager) {
+    public boolean isOtherBookAlreadyIssued(String mobileNo, UserManager userManager) {
         User user = userManager.searchUser(mobileNo);
         Book result = books.stream()
                 .filter(book -> book.getIssuedTo() == user)
                 .findFirst()
-                .orElse(null); // Check whether any book is already issued to given user.
+                .orElse(null);
         return result != null;
     }
 
