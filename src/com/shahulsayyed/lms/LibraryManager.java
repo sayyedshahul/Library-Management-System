@@ -141,11 +141,17 @@ public class LibraryManager {
 
        System.out.print("Enter the book's isbn: ");
        isbn = scn.nextLine();
+        while((book = libraryManager.searchBooks(isbn)) == null){
+            System.out.print("No such ISBN. Please enter the correct isbn: ");
+            isbn = scn.nextLine();
+        };
+
        System.out.print("Enter the user's mobile number: ");
        mobileNo = scn.nextLine();
-
-       book = libraryManager.searchBooks(isbn);
-       user = userManager.searchUser(mobileNo);
+        while((user = userManager.searchUser(mobileNo)) == null){
+            System.out.print("No such user. Please enter the correct mobile number: ");
+            mobileNo = scn.nextLine();
+        };
 
        book.setStatus("Issued");
        book.setIssuedTo(user);
