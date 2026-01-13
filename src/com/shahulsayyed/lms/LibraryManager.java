@@ -20,7 +20,7 @@ public class LibraryManager {
         System.out.println("6. Read book data from csv file");
         System.out.println("7. User Management");
         System.out.println("8. Exit");
-        System.out.print("--> ");
+        System.out.print("Your choice --> ");
     }
 
     public void addBook(Book book){

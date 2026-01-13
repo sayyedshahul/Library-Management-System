@@ -43,7 +43,7 @@ public class App {
                 libraryManager.showAllBooks();
             }
             else if(userChoice == 5){
-                System.out.println(libraryManager.getAvailableBooksCount());
+                System.out.println("Total books = " + libraryManager.getAvailableBooksCount());
             }
             else if(userChoice == 6){
                 try {
