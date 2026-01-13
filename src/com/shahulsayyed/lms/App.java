@@ -62,7 +62,6 @@ public class App {
             }
             else if(userChoice == 9){
                 libraryManager.processBookReturn(libraryManager);
-                System.out.println("Book returned successfully.");
             }
             else if(userChoice == 10){
                 exit = true;

@@ -174,10 +174,16 @@ public class LibraryManager {
         isbn = scn.nextLine();
         Book book = libraryManager.searchBooks(isbn);
 
-        book.setStatus("Available");
-        book.setIssuedTo(null);
-        book.setIssueDate(null);
-        book.setReturnDate(null);
+        if(book.getStatus().equals("Issued")) {
+            book.setStatus("Available");
+            book.setIssuedTo(null);
+            book.setIssueDate(null);
+            book.setReturnDate(null);
+            System.out.println("Book returned successfully.");
+        }
+        else{
+            System.out.println("Book can't be returned as it is not issued already.");
+        }
     }
 }
 
