@@ -153,17 +153,30 @@ public class LibraryManager {
                System.out.print("No such user. Please enter the correct mobile number: ");
                mobileNo = scn.nextLine();
            }
-           ;
 
-           book.setStatus("Issued");
-           book.setIssuedTo(user);
-           book.setIssueDate(LocalDate.now());
-           book.setReturnDate(LocalDate.now().plusDays(7));
-           System.out.println("Book issued successfully.");
+           if(!isBookAlreadyIssued(mobileNo, userManager)) {
+               book.setStatus("Issued");
+               book.setIssuedTo(user);
+               book.setIssueDate(LocalDate.now());
+               book.setReturnDate(LocalDate.now().plusDays(7));
+               System.out.println("Book issued successfully.");
+           }
+           else{
+               System.out.println("Library users can only borrow one book at a time");
+           }
        }
        else{
            System.out.println("Book already issued.");
        }
+    }
+
+    public boolean isBookAlreadyIssued(String mobileNo, UserManager userManager) {
+        User user = userManager.searchUser(mobileNo);
+        Book result = books.stream()
+                .filter(book -> book.getIssuedTo() == user)
+                .findFirst()
+                .orElse(null); // Check whether any book is already issued to given user.
+        return result != null;
     }
 
     public void processBookReturn(LibraryManager libraryManager){
