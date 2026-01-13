@@ -3,9 +3,12 @@ package com.shahulsayyed.lms;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import com.shahulsayyed.lms.user.User;
+import com.shahulsayyed.lms.user.UserManager;
 
 public class LibraryManager {
     private List<Book> books = new ArrayList<>();
@@ -19,7 +22,8 @@ public class LibraryManager {
         System.out.println("5. Available Books Count");
         System.out.println("6. Read book data from csv file");
         System.out.println("7. User Management");
-        System.out.println("8. Exit");
+        System.out.println("8. Issue book");
+        System.out.println("9. Exit");
         System.out.print("Your choice --> ");
     }
 
@@ -48,6 +52,13 @@ public class LibraryManager {
         }
 
         return searchResults;
+    }
+
+    public Book searchBooks(String isbn){
+        return books.stream()
+                .filter(book -> book.getIsbn().equals(isbn))
+                .findFirst()
+                .orElse(null);
     }
 
     public void showAllBooks(){
@@ -96,6 +107,7 @@ public class LibraryManager {
         isbn = scn.nextLine().strip();
         book.setIsbn(isbn);
 
+        book.setStatus("Available");
         return book;
     }
 
@@ -117,6 +129,27 @@ public class LibraryManager {
         }
         br.close();
         return books;
+    }
+
+    public void issueBook(LibraryManager libraryManager, UserManager userManager){
+       Book book;
+       User user;
+       String isbn;
+       String mobileNo;
+       Scanner scn = new Scanner(System.in);
+
+       System.out.print("Enter the book's isbn: ");
+       isbn = scn.nextLine();
+       System.out.print("Enter the user's mobile number: ");
+       mobileNo = scn.nextLine();
+
+       book = libraryManager.searchBooks(isbn);
+       user = userManager.searchUser(mobileNo);
+
+       book.setStatus("Issued");
+       book.setIssuedTo(user);
+       book.setIssueDate(LocalDate.now());
+       book.setReturnDate(LocalDate.now().plusDays(7));
     }
 }
 

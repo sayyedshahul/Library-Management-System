@@ -18,12 +18,11 @@ public class UserManager {
         System.out.print("Your choice --> ");
     }
 
-    public void handleUserManagement(){ // To navigate between different user management options.
+    public void handleUserManagement(UserManager userManager){ // To navigate between different user management options.
         boolean exit = false;
         int userChoice;
         Scanner scn = new Scanner(System.in);
         User user = null;
-        UserManager userManager = new UserManager();
 
         while(!exit) {
             showMenu();
@@ -88,6 +87,13 @@ public class UserManager {
         }
 
         return searchResults;
+    }
+
+    public User searchUser(String mobileNo){
+        return users.stream()
+                .filter(user -> user.getMobileNo().equals(mobileNo))
+                .findFirst()
+                .orElse(null);
     }
 
     public void showAllusers(){
