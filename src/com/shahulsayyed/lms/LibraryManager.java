@@ -14,6 +14,7 @@ public class LibraryManager {
     private List<Book> books = new ArrayList<>();
 
     public void showMenu(){
+        System.out.println();
         System.out.println("=== Library Management System ===");
         System.out.println("1. Add Book");
         System.out.println("2. Remove Book (ISBN)");
@@ -25,6 +26,7 @@ public class LibraryManager {
         System.out.println("8. Issue book");
         System.out.println("9. Process book return");
         System.out.println("10. Exit");
+        System.out.println();
         System.out.print("Your choice --> ");
     }
 
@@ -63,6 +65,7 @@ public class LibraryManager {
     }
 
     public void showAllBooks(){
+        System.out.println();
         if(books.isEmpty()){
             System.out.println("No books to show.");
         }
@@ -95,7 +98,7 @@ public class LibraryManager {
         String isbn;
         String author;
 
-
+        System.out.println();
         System.out.print("Enter the book title: ");
         title = scn.nextLine().strip();
         book.setTitle(title);

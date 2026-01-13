@@ -25,27 +25,34 @@ public class App {
                 System.out.println("Book added successfully");
             }
             else if(userChoice == 2){
+                System.out.println();
                 System.out.print("Enter book's isbn which is to be removed: ");
                 String isbn = scn.nextLine().strip();
                 libraryManager.removeBook(isbn);
+                System.out.println();
                 System.out.println("Book removed successfully");
             }
             else if(userChoice == 3){
+                System.out.println();
                 System.out.print("Enter the book title: ");
                 String title = scn.nextLine().strip();
 
                 System.out.print("Enter the book's author: ");
                 String author = scn.nextLine().strip();
 
+                System.out.println();
                 libraryManager.showAllBooks(libraryManager.searchBooks(author, title));
             }
             else if(userChoice == 4){
+                System.out.println();
                 libraryManager.showAllBooks();
             }
             else if(userChoice == 5){
+                System.out.println();
                 System.out.println("Total books = " + libraryManager.getAvailableBooksCount());
             }
             else if(userChoice == 6){
+                System.out.println();
                 try {
                     libraryManager.addBook(libraryManager.readBooksDataFromCsvFile());
                     System.out.println("File read successfully");

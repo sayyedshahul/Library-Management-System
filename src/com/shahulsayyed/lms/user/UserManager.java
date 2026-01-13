@@ -8,6 +8,7 @@ public class UserManager {
     List<User> users =  new ArrayList<>();
 
     public void showMenu(){
+        System.out.println();
         System.out.println("=== Library User Management System ===");
         System.out.println("1. Add user");
         System.out.println("2. Remove user (Mobile Number)");
@@ -15,6 +16,7 @@ public class UserManager {
         System.out.println("4. Show All users");
         System.out.println("5. Available users Count");
         System.out.println("6. Exit");
+        System.out.println();
         System.out.print("Your choice --> ");
     }
 
@@ -30,17 +32,22 @@ public class UserManager {
             scn.nextLine();
 
             if(userChoice == 1){
+                System.out.println();
                 user = userManager.takeNewUserDetails();
                 userManager.addUser(user);
+                System.out.println();
                 System.out.println("User added successfully.");
             }
             else if(userChoice == 2){
+                System.out.println();
                 System.out.print("Enter user's mobile number who is to be removed: ");
                 String mobileNo = scn.nextLine().strip();
                 userManager.removeUser(mobileNo);
+                System.out.println();
                 System.out.println("User removed successfully.");
             }
             else if(userChoice == 3){
+                System.out.println();
                 System.out.print("Enter the user's name: ");
                 String userName = scn.nextLine().strip();
 
@@ -50,12 +57,15 @@ public class UserManager {
                 System.out.print("Enter the user's address(if you want to): ");
                 String address = scn.nextLine().strip();
 
+                System.out.println();
                 userManager.showAllusers(userManager.searchUser(userName, mobile, address));
             }
             else if(userChoice == 4){
+                System.out.println();
                 userManager.showAllusers();
             }
             else if(userChoice == 5){
+                System.out.println();
                 System.out.println("Total users = " + userManager.getAvailableusersCount());
             }
             else{
