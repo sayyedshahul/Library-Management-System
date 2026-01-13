@@ -32,11 +32,7 @@ public class LibraryManager {
     }
 
     public void removeBook(String isbn){
-        for(Book book: books){
-            if(book.getIsbn().equals(isbn)){
-                books.remove(book);
-            }
-        }
+        books.removeIf(book -> book.getIsbn().equals(isbn));
     }
 
     public List<Book> searchBooks(String author, String title){

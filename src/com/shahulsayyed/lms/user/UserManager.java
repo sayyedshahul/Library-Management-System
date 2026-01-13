@@ -69,12 +69,8 @@ public class UserManager {
         users.add(user);
     }
 
-    public void removeUser(String MobileNo){
-        for(User user: users){
-            if(user.getMobileNo().equals(MobileNo)){
-                users.remove(user);
-            }
-        }
+    public void removeUser(String mobileNo){
+        users.removeIf(user ->user.getMobileNo().equals(mobileNo));
     }
 
     public List<User> searchUser(String userName, String mobileNo, String address){
