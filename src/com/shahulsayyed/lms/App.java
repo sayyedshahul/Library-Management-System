@@ -1,12 +1,13 @@
 package com.shahulsayyed.lms;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args){
         boolean exit = false;
         int userChoice;
-        Book book = null;
+        Book book;
         LibraryManager libraryManager = new LibraryManager();
         Scanner scn = new Scanner(System.in);
 
@@ -42,6 +43,15 @@ public class App {
                 System.out.println(libraryManager.getAvailableBooksCount());
             }
             else if(userChoice == 6){
+                try {
+                    libraryManager.addBook(libraryManager.readBooksDataFromCsvFile());
+                    System.out.println("File read successfully");
+                }
+                catch(IOException e){
+                    System.out.println("Something went wrong. Unable to read your file.");
+                }
+            }
+            else if(userChoice == 7){
                 exit = true;
             }
         }

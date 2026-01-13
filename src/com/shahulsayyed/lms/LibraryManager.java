@@ -1,5 +1,8 @@
 package com.shahulsayyed.lms;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +17,8 @@ public class LibraryManager {
         System.out.println("3. Search Books (Author/Title)");
         System.out.println("4. Show All Books");
         System.out.println("5. Available Books Count");
-        System.out.println("6. Exit");
+        System.out.println("6. Read book data from csv file");
+        System.out.println("7. Exit");
         System.out.print("--> ");
     }
 
@@ -86,6 +90,26 @@ public class LibraryManager {
         book.setIsbn(isbn);
 
         return book;
+    }
+
+    public List<Book> readBooksDataFromCsvFile() throws IOException {
+        String path;
+        Scanner scn = new Scanner(System.in);
+        System.out.print("Enter file path: ");
+        path = scn.nextLine().strip();
+        String line;
+        String[] data;
+        List<Book> books = new ArrayList<>();
+
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        br.readLine();
+
+        while((line = br.readLine()) != null){
+            data = line.split(",");
+            books.add(new Book(data[0], data[1], data[2]));
+        }
+        br.close();
+        return books;
     }
 }
 
