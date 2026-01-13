@@ -14,8 +14,7 @@ public class LibraryManager {
     Scanner scn = new Scanner(System.in);
 
     public void showMenu(){
-        System.out.println();
-        System.out.println("=== Library Management System ===");
+        System.out.println("\n=== Library Management System ===");
         System.out.println("1. Add Book");
         System.out.println("2. Remove Book (ISBN)");
         System.out.println("3. Search Books (Author/Title)");
@@ -26,15 +25,13 @@ public class LibraryManager {
         System.out.println("8. Issue book");
         System.out.println("9. Process book return");
         System.out.println("10. Exit");
-        System.out.println();
-        System.out.print("Your choice --> ");
+        System.out.print("\nYour choice --> ");
     }
 
     public void addBook(){
         Book book = takeBookFromUser();
         books.add(book);
-        System.out.println();
-        System.out.println("Book added successfully");
+        System.out.println("\nBook added successfully");
     }
 
     public void addBook(List<Book> books){
@@ -42,19 +39,16 @@ public class LibraryManager {
     }
 
     public void removeBook(){
-        System.out.println();
-        System.out.print("Enter book's isbn which is to be removed: ");
+        System.out.print("\nEnter book's isbn which is to be removed: ");
         String isbn = scn.nextLine().strip();
 
         books.removeIf(book -> book.getIsbn().equals(isbn));
 
-        System.out.println();
-        System.out.println("Book removed successfully");
+        System.out.println("\nBook removed successfully");
     }
 
     public void searchBooks(){
-        System.out.println();
-        System.out.print("Enter the book title: ");
+        System.out.print("\nEnter the book title: ");
         String title = scn.nextLine().toLowerCase().strip();
 
         System.out.print("Enter the book's author: ");
@@ -79,32 +73,29 @@ public class LibraryManager {
     }
 
     public void showAllBooks(){
-        System.out.println(); // For well-separated output.
         if(books.isEmpty()){
-            System.out.println("No books to show.");
+            System.out.println("\nNo books to show.");
         }
         else {
             for (Book book : books) {
-                System.out.println(book);
+                System.out.println("\n" + book);
             }
         }
     }
 
     public void showAllBooks(List<Book> books){
-        System.out.println();
         if(books.isEmpty()){
-            System.out.println("No books to show.");
+            System.out.println("\nNo books to show.");
         }
         else {
             for (Book book : books) {
-                System.out.println(book);
+                System.out.println("\n" + book);
             }
         }
     }
 
     public void showAvailableBooksCount(){
-        System.out.println();
-        System.out.println("Total books = " + books.size());
+        System.out.println("\nTotal books = " + books.size());
     }
 
     public Book takeBookFromUser(){
@@ -113,8 +104,7 @@ public class LibraryManager {
         String isbn;
         String author;
 
-        System.out.println();
-        System.out.print("Enter the book title: ");
+        System.out.print("\nEnter the book title: ");
         title = scn.nextLine().strip();
         book.setTitle(title);
 
@@ -133,8 +123,7 @@ public class LibraryManager {
     public void readBooksDataFromCsvFile() {
         String path;
 
-        System.out.println();
-        System.out.print("Enter file path: ");
+        System.out.print("\nEnter file path: ");
         path = scn.nextLine().strip();
         String line;
         String[] data;
