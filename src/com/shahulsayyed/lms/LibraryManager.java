@@ -23,7 +23,8 @@ public class LibraryManager {
         System.out.println("6. Read book data from csv file");
         System.out.println("7. User Management");
         System.out.println("8. Issue book");
-        System.out.println("9. Exit");
+        System.out.println("9. Process book return");
+        System.out.println("10. Exit");
         System.out.print("Your choice --> ");
     }
 
@@ -150,6 +151,20 @@ public class LibraryManager {
        book.setIssuedTo(user);
        book.setIssueDate(LocalDate.now());
        book.setReturnDate(LocalDate.now().plusDays(7));
+    }
+
+    public void processBookReturn(LibraryManager libraryManager){
+        String isbn;
+        Scanner scn = new Scanner(System.in);
+
+        System.out.print("Enter the book's isbn: ");
+        isbn = scn.nextLine();
+        Book book = libraryManager.searchBooks(isbn);
+
+        book.setStatus("Available");
+        book.setIssuedTo(null);
+        book.setIssueDate(null);
+        book.setReturnDate(null);
     }
 }
 
