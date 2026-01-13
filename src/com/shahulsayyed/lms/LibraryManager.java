@@ -155,7 +155,7 @@ public class LibraryManager {
 
        System.out.print("Enter the book's isbn: ");
        isbn = scn.nextLine();
-        while((book = libraryManager.searchBooks(isbn)) == null){
+        while((book = libraryManager.searchBooks(isbn)) == null){ //Check repeatedly till you get a valid ISBN.
             System.out.print("No such ISBN. Please enter the correct isbn: ");
             isbn = scn.nextLine();
         }
@@ -163,12 +163,12 @@ public class LibraryManager {
        if(book.getStatus().equals("Available")) {
            System.out.print("Enter the user's mobile number: ");
            mobileNo = scn.nextLine();
-           while ((user = userManager.searchUser(mobileNo)) == null) {
+           while ((user = userManager.searchUser(mobileNo)) == null) {//Check repeatedly till you get a valid mobile number.
                System.out.print("No such user. Please enter the correct mobile number: ");
                mobileNo = scn.nextLine();
            }
 
-           if(!isBookAlreadyIssued(mobileNo, userManager)) {
+           if(!isOtherBookAlreadyIssued(mobileNo, userManager)) { // Check whether any other book is already issued to given user.
                book.setStatus("Issued");
                book.setIssuedTo(user);
                book.setIssueDate(LocalDate.now());
