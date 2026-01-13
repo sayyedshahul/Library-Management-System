@@ -172,7 +172,12 @@ public class LibraryManager {
 
         System.out.print("Enter the book's isbn: ");
         isbn = scn.nextLine();
-        Book book = libraryManager.searchBooks(isbn);
+        Book book;
+
+        while((book = libraryManager.searchBooks(isbn)) == null){
+            System.out.print("No such ISBN. Please enter the correct isbn: ");
+            isbn = scn.nextLine();
+        };
 
         if(book.getStatus().equals("Issued")) {
             book.setStatus("Available");
