@@ -1,5 +1,7 @@
 package com.shahulsayyed.lms;
 
+import com.shahulsayyed.lms.user.UserManager;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -9,6 +11,7 @@ public class App {
         int userChoice;
         Book book;
         LibraryManager libraryManager = new LibraryManager();
+        UserManager userManager = new UserManager();
         Scanner scn = new Scanner(System.in);
 
         while(!exit){
@@ -52,6 +55,9 @@ public class App {
                 }
             }
             else if(userChoice == 7){
+                userManager.handleUserManagement();
+            }
+            else if(userChoice == 8){
                 exit = true;
             }
         }

@@ -18,7 +18,8 @@ public class LibraryManager {
         System.out.println("4. Show All Books");
         System.out.println("5. Available Books Count");
         System.out.println("6. Read book data from csv file");
-        System.out.println("7. Exit");
+        System.out.println("7. User Management");
+        System.out.println("8. Exit");
         System.out.print("--> ");
     }
 
@@ -54,14 +55,24 @@ public class LibraryManager {
     }
 
     public void showAllBooks(){
-        for(Book book: books){
-            System.out.println(book);
+        if(books.isEmpty()){
+            System.out.println("No books to show.");
+        }
+        else {
+            for (Book book : books) {
+                System.out.println(book);
+            }
         }
     }
 
     public void showAllBooks(List<Book> books){
-        for(Book book: books){
-            System.out.println(book);
+        if(books.isEmpty()){
+            System.out.println("No books to show.");
+        }
+        else {
+            for (Book book : books) {
+                System.out.println(book);
+            }
         }
     }
 
