@@ -2,7 +2,6 @@ package com.shahulsayyed.lms;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +11,7 @@ import com.shahulsayyed.lms.user.UserManager;
 
 public class LibraryManager {
     private List<Book> books = new ArrayList<>();
+    Scanner scn = new Scanner(System.in);
 
     public void showMenu(){
         System.out.println();
@@ -42,8 +42,6 @@ public class LibraryManager {
     }
 
     public void removeBook(){
-        Scanner scn = new Scanner(System.in);
-
         System.out.println();
         System.out.print("Enter book's isbn which is to be removed: ");
         String isbn = scn.nextLine().strip();
@@ -55,8 +53,6 @@ public class LibraryManager {
     }
 
     public void searchBooks(){
-        Scanner scn = new Scanner(System.in);
-
         System.out.println();
         System.out.print("Enter the book title: ");
         String title = scn.nextLine().toLowerCase().strip();
@@ -112,7 +108,6 @@ public class LibraryManager {
     }
 
     public Book takeBookFromUser(){
-        Scanner scn = new Scanner(System.in);
         Book book = new Book();
         String title;
         String isbn;
@@ -137,7 +132,6 @@ public class LibraryManager {
 
     public void readBooksDataFromCsvFile() {
         String path;
-        Scanner scn = new Scanner(System.in);
 
         System.out.println();
         System.out.print("Enter file path: ");
@@ -169,14 +163,13 @@ public class LibraryManager {
        User user;
        String isbn;
        String mobileNo;
-       Scanner scn = new Scanner(System.in);
 
        System.out.print("Enter the book's isbn: ");
        isbn = scn.nextLine();
         while((book = libraryManager.searchBooks(isbn)) == null){
             System.out.print("No such ISBN. Please enter the correct isbn: ");
             isbn = scn.nextLine();
-        };
+        }
 
        if(book.getStatus().equals("Available")) {
            System.out.print("Enter the user's mobile number: ");
@@ -213,7 +206,6 @@ public class LibraryManager {
 
     public void processBookReturn(LibraryManager libraryManager){
         String isbn;
-        Scanner scn = new Scanner(System.in);
 
         System.out.print("Enter the book's isbn: ");
         isbn = scn.nextLine();
@@ -222,7 +214,7 @@ public class LibraryManager {
         while((book = libraryManager.searchBooks(isbn)) == null){
             System.out.print("No such ISBN. Please enter the correct isbn: ");
             isbn = scn.nextLine();
-        };
+        }
 
         if(book.getStatus().equals("Issued")) {
             book.setStatus("Available");

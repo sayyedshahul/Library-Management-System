@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class UserManager {
     List<User> users =  new ArrayList<>();
+    Scanner scn = new Scanner(System.in);
 
     public void showMenu(){
         System.out.println();
@@ -23,8 +24,7 @@ public class UserManager {
     public void handleUserManagement(UserManager userManager){ // To navigate between different user management options.
         boolean exit = false;
         int userChoice;
-        Scanner scn = new Scanner(System.in);
-        User user = null;
+        User user;
 
         while(!exit) {
             showMenu();
@@ -133,7 +133,6 @@ public class UserManager {
     }
 
     public User takeNewUserDetails(){
-        Scanner scn = new Scanner(System.in);
         User user = new User();
         String userName;
         String mobileNo;
