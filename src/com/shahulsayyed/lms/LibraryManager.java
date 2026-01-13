@@ -146,17 +146,24 @@ public class LibraryManager {
             isbn = scn.nextLine();
         };
 
-       System.out.print("Enter the user's mobile number: ");
-       mobileNo = scn.nextLine();
-        while((user = userManager.searchUser(mobileNo)) == null){
-            System.out.print("No such user. Please enter the correct mobile number: ");
-            mobileNo = scn.nextLine();
-        };
+       if(book.getStatus().equals("Available")) {
+           System.out.print("Enter the user's mobile number: ");
+           mobileNo = scn.nextLine();
+           while ((user = userManager.searchUser(mobileNo)) == null) {
+               System.out.print("No such user. Please enter the correct mobile number: ");
+               mobileNo = scn.nextLine();
+           }
+           ;
 
-       book.setStatus("Issued");
-       book.setIssuedTo(user);
-       book.setIssueDate(LocalDate.now());
-       book.setReturnDate(LocalDate.now().plusDays(7));
+           book.setStatus("Issued");
+           book.setIssuedTo(user);
+           book.setIssueDate(LocalDate.now());
+           book.setReturnDate(LocalDate.now().plusDays(7));
+           System.out.println("Book issued successfully.");
+       }
+       else{
+           System.out.println("Book already issued.");
+       }
     }
 
     public void processBookReturn(LibraryManager libraryManager){

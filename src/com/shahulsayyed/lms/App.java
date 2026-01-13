@@ -59,7 +59,6 @@ public class App {
             }
             else if(userChoice == 8){
                 libraryManager.issueBook(libraryManager, userManager);
-                System.out.println("Book issued successfully.");
             }
             else if(userChoice == 9){
                 libraryManager.processBookReturn(libraryManager);
