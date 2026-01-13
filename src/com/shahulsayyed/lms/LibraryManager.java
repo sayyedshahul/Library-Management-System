@@ -30,23 +30,41 @@ public class LibraryManager {
         System.out.print("Your choice --> ");
     }
 
-    public void addBook(Book book){
+    public void addBook(){
+        Book book = takeBookFromUser();
         books.add(book);
+        System.out.println();
+        System.out.println("Book added successfully");
     }
 
     public void addBook(List<Book> books){
         this.books.addAll(books);
     }
 
-    public void removeBook(String isbn){
+    public void removeBook(){
+        Scanner scn = new Scanner(System.in);
+
+        System.out.println();
+        System.out.print("Enter book's isbn which is to be removed: ");
+        String isbn = scn.nextLine().strip();
+
         books.removeIf(book -> book.getIsbn().equals(isbn));
+
+        System.out.println();
+        System.out.println("Book removed successfully");
     }
 
-    public List<Book> searchBooks(String author, String title){
-        List<Book> searchResults = new ArrayList<>();
-        author = author.toLowerCase().strip();
-        title = title.toLowerCase().strip();
+    public void searchBooks(){
+        Scanner scn = new Scanner(System.in);
 
+        System.out.println();
+        System.out.print("Enter the book title: ");
+        String title = scn.nextLine().toLowerCase().strip();
+
+        System.out.print("Enter the book's author: ");
+        String author = scn.nextLine().toLowerCase().strip();
+
+        List<Book> searchResults = new ArrayList<>();
         for(Book book: books){
             if((!title.isEmpty() && book.getTitle().toLowerCase().contains(title)) ||
                     (!author.isEmpty() && book.getAuthor().toLowerCase().contains(author))){
@@ -54,7 +72,7 @@ public class LibraryManager {
             }
         }
 
-        return searchResults;
+        showAllBooks(searchResults);
     }
 
     public Book searchBooks(String isbn){
@@ -65,7 +83,7 @@ public class LibraryManager {
     }
 
     public void showAllBooks(){
-        System.out.println();
+        System.out.println(); // For well-separated output.
         if(books.isEmpty()){
             System.out.println("No books to show.");
         }
@@ -77,6 +95,7 @@ public class LibraryManager {
     }
 
     public void showAllBooks(List<Book> books){
+        System.out.println();
         if(books.isEmpty()){
             System.out.println("No books to show.");
         }
@@ -87,8 +106,9 @@ public class LibraryManager {
         }
     }
 
-    public int getAvailableBooksCount(){
-        return books.size();
+    public void showAvailableBooksCount(){
+        System.out.println();
+        System.out.println("Total books = " + books.size());
     }
 
     public Book takeBookFromUser(){
@@ -115,24 +135,33 @@ public class LibraryManager {
         return book;
     }
 
-    public List<Book> readBooksDataFromCsvFile() throws IOException {
+    public void readBooksDataFromCsvFile() {
         String path;
         Scanner scn = new Scanner(System.in);
+
+        System.out.println();
         System.out.print("Enter file path: ");
         path = scn.nextLine().strip();
         String line;
         String[] data;
         List<Book> books = new ArrayList<>();
 
-        BufferedReader br = new BufferedReader(new FileReader(path));
-        br.readLine();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            br.readLine(); // To skip header.
 
-        while((line = br.readLine()) != null){
-            data = line.split(",");
-            books.add(new Book(data[0], data[1], data[2]));
+            while ((line = br.readLine()) != null) {
+                data = line.split(",");
+                books.add(new Book(data[0], data[1], data[2]));
+            }
+            br.close();
+
+            addBook(books);
+            System.out.println("File read successfully");
         }
-        br.close();
-        return books;
+        catch(Exception e){
+            System.out.println("Something went wrong. Unable to read your file.");
+        }
     }
 
     public void issueBook(LibraryManager libraryManager, UserManager userManager){
