@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserManager {
-    private static List<User> users =  new ArrayList<>();
+    private List<User> users =  new ArrayList<>();
     private Scanner scn = new Scanner(System.in);
 
     public void showMenu(){

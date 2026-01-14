@@ -25,7 +25,7 @@ public class App {
                 case 5 -> libraryManager.showAvailableBooksCount();
                 case 6 -> libraryManager.readBooksDataFromCsvFile();
                 case 7 -> userManager.handleUserManagement();
-                case 8 -> libraryManager.issueBook();
+                case 8 -> libraryManager.issueBook(userManager);
                 case 9 -> libraryManager.processBookReturn();
                 case 10 -> exit = true;
             }

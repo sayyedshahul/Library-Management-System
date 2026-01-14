@@ -11,7 +11,7 @@ import com.shahulsayyed.lms.user.User;
 import com.shahulsayyed.lms.user.UserManager;
 
 public class LibraryManager {
-    private static List<Book> books = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
     private Scanner scn = new Scanner(System.in);
 
     public void showMenu(){
@@ -36,7 +36,7 @@ public class LibraryManager {
     }
 
     public void addBook(List<Book> books){
-        LibraryManager.books.addAll(books);
+        this.books.addAll(books);
     }
 
     public void removeBook(){
@@ -148,17 +148,15 @@ public class LibraryManager {
         }
     }
 
-    public void issueBook(){
+    public void issueBook(UserManager userManager){
        Book book;
        User user;
        String isbn;
        String mobileNo;
-       LibraryManager libraryManager = new LibraryManager();
-       UserManager userManager = new UserManager();
 
        System.out.print("Enter the book's isbn: ");
        isbn = scn.nextLine();
-        while((book = libraryManager.searchBooks(isbn)) == null){ //Check repeatedly till you get a valid ISBN.
+        while((book = searchBooks(isbn)) == null){ //Check repeatedly till you get a valid ISBN.
             System.out.print("No such ISBN. Please enter the correct isbn: ");
             isbn = scn.nextLine();
         }
@@ -198,13 +196,12 @@ public class LibraryManager {
 
     public void processBookReturn(){
         String isbn;
-        LibraryManager libraryManager = new LibraryManager();
 
         System.out.print("Enter the book's isbn: ");
         isbn = scn.nextLine();
         Book book;
 
-        while((book = libraryManager.searchBooks(isbn)) == null){
+        while((book = searchBooks(isbn)) == null){
             System.out.print("No such ISBN. Please enter the correct isbn: ");
             isbn = scn.nextLine();
         }
