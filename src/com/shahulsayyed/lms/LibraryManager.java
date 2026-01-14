@@ -3,6 +3,7 @@ package com.shahulsayyed.lms;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -209,15 +210,22 @@ public class LibraryManager {
         }
 
         if(book.getStatus().equals("Issued")) {
+            long days = ChronoUnit.DAYS.between(book.getReturnDate(), LocalDate.now()); // To get number of days between due return data and actual return date.
             book.setStatus("Available");
             book.setIssuedTo(null);
             book.setIssueDate(null);
             book.setReturnDate(null);
-            System.out.println("Book returned successfully.");
+            long fine = days > 0 ? calculateFine(days) : 0;
+            System.out.println("Book returned successfully. Fine = " + fine + " Rupees.");
         }
         else{
             System.out.println("Book can't be returned as it is not issued already.");
         }
+    }
+
+    public long calculateFine(long days){
+        int perDayFine = 50;
+        return perDayFine * days;
     }
 }
 
