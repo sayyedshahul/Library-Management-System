@@ -10,8 +10,8 @@ import com.shahulsayyed.lms.user.User;
 import com.shahulsayyed.lms.user.UserManager;
 
 public class LibraryManager {
-    private List<Book> books = new ArrayList<>();
-    Scanner scn = new Scanner(System.in);
+    private static List<Book> books = new ArrayList<>();
+    private Scanner scn = new Scanner(System.in);
 
     public void showMenu(){
         System.out.println("\n=== Library Management System ===");
@@ -35,7 +35,7 @@ public class LibraryManager {
     }
 
     public void addBook(List<Book> books){
-        this.books.addAll(books);
+        LibraryManager.books.addAll(books);
     }
 
     public void removeBook(){
@@ -147,11 +147,13 @@ public class LibraryManager {
         }
     }
 
-    public void issueBook(LibraryManager libraryManager, UserManager userManager){
+    public void issueBook(){
        Book book;
        User user;
        String isbn;
        String mobileNo;
+       LibraryManager libraryManager = new LibraryManager();
+       UserManager userManager = new UserManager();
 
        System.out.print("Enter the book's isbn: ");
        isbn = scn.nextLine();
@@ -193,8 +195,9 @@ public class LibraryManager {
         return result != null;
     }
 
-    public void processBookReturn(LibraryManager libraryManager){
+    public void processBookReturn(){
         String isbn;
+        LibraryManager libraryManager = new LibraryManager();
 
         System.out.print("Enter the book's isbn: ");
         isbn = scn.nextLine();

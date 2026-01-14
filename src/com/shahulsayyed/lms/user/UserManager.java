@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserManager {
-    List<User> users =  new ArrayList<>();
-    Scanner scn = new Scanner(System.in);
+    private static List<User> users =  new ArrayList<>();
+    private Scanner scn = new Scanner(System.in);
 
     public void showMenu(){
         System.out.println("\n=== Library User Management System ===");
@@ -19,10 +19,9 @@ public class UserManager {
         System.out.print("\nYour choice --> ");
     }
 
-    public void handleUserManagement(UserManager userManager){ // To navigate between different user management options.
+    public void handleUserManagement(){ // To navigate between different user management options.
         boolean exit = false;
         int userChoice;
-        User user;
 
         while(!exit) {
             showMenu();
@@ -30,11 +29,11 @@ public class UserManager {
             scn.nextLine();
 
             switch(userChoice){
-                case 1 -> userManager.addUser();
-                case 2 -> userManager.removeUser();
-                case 3 -> userManager.searchUser();
-                case 4 -> userManager.showAllusers();
-                case 5 -> userManager.showAvailableusersCount();
+                case 1 -> addUser();
+                case 2 -> removeUser();
+                case 3 -> searchUser();
+                case 4 -> showAllusers();
+                case 5 -> showAvailableusersCount();
                 case 6 -> exit = true;
             }
         }
