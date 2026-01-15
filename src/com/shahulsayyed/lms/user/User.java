@@ -5,32 +5,32 @@ public class User {
     private String mobileNo;
     private String address;
 
-    public String getUserName() {
+     String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
+     void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public String getMobileNo() {
+     String getMobileNo() {
         return mobileNo;
     }
 
-    public void setMobileNo(String mobileNo) {
+     void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
     }
 
-    public String getAddress() {
+     String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+     void setAddress(String address) {
         this.address = address;
     }
 
     @Override
-    public String toString() {
+     public String toString() {
         return "User{" +
                 "userName='" + userName + '\'' +
                 ", mobileNo='" + mobileNo + '\'' +

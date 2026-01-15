@@ -8,51 +8,20 @@ public class UserManager {
     private List<User> users =  new ArrayList<>();
     private Scanner scn = new Scanner(System.in);
 
-    public void showMenu(){
-        System.out.println("\n=== Library User Management System ===");
-        System.out.println("1. Add user");
-        System.out.println("2. Remove user (Mobile Number)");
-        System.out.println("3. Search user (name/mobile-number/address)");
-        System.out.println("4. Show All users");
-        System.out.println("5. Available users Count");
-        System.out.println("6. Exit");
-        System.out.print("\nYour choice --> ");
-    }
-
-    public void handleUserManagement(){ // To navigate between different user management options.
-        boolean exit = false;
-        int userChoice;
-
-        while(!exit) {
-            showMenu();
-            userChoice = scn.nextInt();
-            scn.nextLine();
-
-            switch(userChoice){
-                case 1 -> addUser();
-                case 2 -> removeUser();
-                case 3 -> searchUser();
-                case 4 -> showAllusers();
-                case 5 -> showAvailableusersCount();
-                case 6 -> exit = true;
-            }
-        }
-    }
-
-    public void addUser(){
+    void addUser(){
         User user = takeNewUserDetails();
         users.add(user);
         System.out.println("\nUser added successfully.");
     }
 
-    public void removeUser(){
+    void removeUser(){
         System.out.print("\nEnter user's mobile number who is to be removed: ");
         String mobileNo = scn.nextLine().strip();
         users.removeIf(user ->user.getMobileNo().equals(mobileNo));
         System.out.println("\nUser removed successfully.");
     }
 
-    public void searchUser(){
+    void searchUser(){
         System.out.print("\nEnter the user's name: ");
         String userName = scn.nextLine().strip();
 
@@ -85,7 +54,7 @@ public class UserManager {
                 .orElse(null);
     }
 
-    public void showAllusers(){
+    void showAllusers(){
         if(users.isEmpty()){
             System.out.println("\nNo users to show.");
         }
@@ -96,7 +65,7 @@ public class UserManager {
         }
     }
 
-    public void showAllusers(List<User> users){
+    void showAllusers(List<User> users){
         if(users.isEmpty()){
             System.out.println("\nNo users to show.");
         }
@@ -107,11 +76,11 @@ public class UserManager {
         }
     }
 
-    public void showAvailableusersCount(){
+    void showAvailableusersCount(){
         System.out.println("\nTotal users = " + users.size());
     }
 
-    public User takeNewUserDetails(){
+    User takeNewUserDetails(){
         User user = new User();
         String userName;
         String mobileNo;

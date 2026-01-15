@@ -1,9 +1,9 @@
-package com.shahulsayyed.lms;
+package com.shahulsayyed.lms.library;
 
 import com.shahulsayyed.lms.user.User;
 import java.time.*;
 
-public class Book {
+class Book {
     private String isbn;
     private String title;
     private String author;
@@ -12,73 +12,73 @@ public class Book {
     private LocalDate issueDate;
     private LocalDate returnDate;
 
-    public Book(){}
+    Book(){}
 
-    public Book(String isbn, String title, String author){
+    Book(String isbn, String title, String author){
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.status = "Available";
     }
 
-    public void setIsbn(String isbn){
+     void setIsbn(String isbn){
         this.isbn = isbn;
     }
 
-    public void setTitle(String title){
+     void setTitle(String title){
         this.title = title;
     }
 
-    public void setAuthor(String author){
+     void setAuthor(String author){
         this.author = author;
     }
 
-    public String getIsbn(){
+     String getIsbn(){
         return isbn;
     }
 
-    public String getTitle(){
+     String getTitle(){
         return title;
     }
 
-    public String getAuthor(){
+     String getAuthor(){
         return author;
     }
 
-    public String getStatus() {
+     String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+     void setStatus(String status) {
         this.status = status;
     }
 
-    public User getIssuedTo() {
+     User getIssuedTo() {
         return issuedTo;
     }
 
-    public void setIssuedTo(User issuedTo) {
+     void setIssuedTo(User issuedTo) {
         this.issuedTo = issuedTo;
     }
 
-    public LocalDate getIssueDate() {
+     LocalDate getIssueDate() {
         return issueDate;
     }
 
-    public void setIssueDate(LocalDate issueDate) {
+     void setIssueDate(LocalDate issueDate) {
         this.issueDate = issueDate;
     }
 
-    public LocalDate getReturnDate() {
+     LocalDate getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(LocalDate returnDate) {
+     void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 
     @Override
-    public String toString() {
+     public String toString() {
         return "Book{" +
                 "isbn='" + isbn + '\'' +
                 ", title='" + title + '\'' +

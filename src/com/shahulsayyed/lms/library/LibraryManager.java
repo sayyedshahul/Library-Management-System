@@ -1,4 +1,4 @@
-package com.shahulsayyed.lms;
+package com.shahulsayyed.lms.library;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,32 +14,17 @@ public class LibraryManager {
     private List<Book> books = new ArrayList<>();
     private Scanner scn = new Scanner(System.in);
 
-    public void showMenu(){
-        System.out.println("\n=== Library Management System ===");
-        System.out.println("1. Add Book");
-        System.out.println("2. Remove Book (ISBN)");
-        System.out.println("3. Search Books (Author/Title)");
-        System.out.println("4. Show All Books");
-        System.out.println("5. Available Books Count");
-        System.out.println("6. Read book data from csv file");
-        System.out.println("7. User Management");
-        System.out.println("8. Issue book");
-        System.out.println("9. Process book return");
-        System.out.println("10. Exit");
-        System.out.print("\nYour choice --> ");
-    }
-
-    public void addBook(){
+    void addBook(){
         Book book = takeBookFromUser();
         books.add(book);
         System.out.println("\nBook added successfully");
     }
 
-    public void addBook(List<Book> books){
+    void addBook(List<Book> books){
         this.books.addAll(books);
     }
 
-    public void removeBook(){
+    void removeBook(){
         System.out.print("\nEnter book's isbn which is to be removed: ");
         String isbn = scn.nextLine().strip();
 
@@ -48,7 +33,7 @@ public class LibraryManager {
         System.out.println("\nBook removed successfully");
     }
 
-    public void searchBooks(){
+    void searchBooks(){
         System.out.print("\nEnter the book title: ");
         String title = scn.nextLine().toLowerCase().strip();
 
@@ -66,14 +51,14 @@ public class LibraryManager {
         showAllBooks(searchResults);
     }
 
-    public Book searchBooks(String isbn){
+    Book searchBooks(String isbn){
         return books.stream()
                 .filter(book -> book.getIsbn().equals(isbn))
                 .findFirst()
                 .orElse(null);
     }
 
-    public void showAllBooks(){
+    void showAllBooks(){
         if(books.isEmpty()){
             System.out.println("\nNo books to show.");
         }
@@ -84,7 +69,7 @@ public class LibraryManager {
         }
     }
 
-    public void showAllBooks(List<Book> books){
+    void showAllBooks(List<Book> books){
         if(books.isEmpty()){
             System.out.println("\nNo books to show.");
         }
@@ -95,11 +80,11 @@ public class LibraryManager {
         }
     }
 
-    public void showAvailableBooksCount(){
+    void showAvailableBooksCount(){
         System.out.println("\nTotal books = " + books.size());
     }
 
-    public Book takeBookFromUser(){
+    Book takeBookFromUser(){
         Book book = new Book();
         String title;
         String isbn;
@@ -121,7 +106,7 @@ public class LibraryManager {
         return book;
     }
 
-    public void readBooksDataFromCsvFile() {
+    void readBooksDataFromCsvFile() {
         String path;
 
         System.out.print("\nEnter file path: ");
@@ -148,7 +133,7 @@ public class LibraryManager {
         }
     }
 
-    public void issueBook(UserManager userManager){
+    void issueBook(UserManager userManager){
        Book book;
        User user;
        String isbn;
@@ -185,7 +170,7 @@ public class LibraryManager {
        }
     }
 
-    public boolean isOtherBookAlreadyIssued(String mobileNo, UserManager userManager) {
+    boolean isOtherBookAlreadyIssued(String mobileNo, UserManager userManager) {
         User user = userManager.searchUser(mobileNo);
         Book result = books.stream()
                 .filter(book -> book.getIssuedTo() == user)
@@ -194,7 +179,7 @@ public class LibraryManager {
         return result != null;
     }
 
-    public void processBookReturn(){
+    void processBookReturn(){
         String isbn;
 
         System.out.print("Enter the book's isbn: ");
@@ -220,7 +205,7 @@ public class LibraryManager {
         }
     }
 
-    public long calculateFine(long days){
+    long calculateFine(long days){
         int perDayFine = 50;
         return perDayFine * days;
     }
