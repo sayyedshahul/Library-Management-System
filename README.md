@@ -34,18 +34,39 @@ implemented in Java using clean architecture, collections, and modern APIs.
 
 ## Project Structure
 
+- `App`  - Application startup and dependency wiring
 - `Book` – represents a library book
 - `User` – represents a library member
-- `App`  - user interaction & menu handling
 - `UserManager` – core user management business logic
-- `LibraryManager` – core library business logic
+- `LibraryManager` – core book management business logic
+- `MenuHandler` - Menu handling for main menu
+- `UserManagementMenuHandler` - Menu handling for user management
+
+```
+src
+└── com
+    └── shahulsayyed
+        └── lms
+            ├── App.java
+            ├── library
+            │   ├── Book.java
+            │   ├── LibraryManager.java
+            │   └── MenuHandler.java
+            └── user
+                ├── User.java
+                ├── UserManager.java
+                └── UserManagementMenuHandler.java
+```
 
 ## Design Decisions
 
-- Used `ArrayList` for in-memory storage for simplicity
-- Used `java.time.LocalDate` for date handling
-- Used Streams and lambdas for searching and filtering
-- Separated business logic from user interaction
+- Follows an MVC-style layered architecture with Dependency Injection for loose coupling and testability
+- Applies the Single Responsibility Principle to keep classes focused and maintainable
+- Uses `ArrayList` for in-memory storage to keep the initial implementation simple
+- Uses `java.time.LocalDate` for safe and clear date handling
+- Uses Java Streams and lambdas for expressive searching and filtering logic
+- Separates business logic from user interaction (menu handling) to improve modularity
+
 
 ## Future Improvements
 
