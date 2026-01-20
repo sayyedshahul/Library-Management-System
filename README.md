@@ -29,7 +29,7 @@ implemented in Java using clean architecture, collections, and modern APIs.
 
 1. Clone the repository
 2. Open the project in IntelliJ IDEA or any Java IDE
-3. Run the `Main` class
+3. Run the `App` class
 4. Follow the console menu to manage books and users
 
 ## Project Structure
